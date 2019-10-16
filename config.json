@@ -1,0 +1,5 @@
+{
+    "PD_CLIENT_ID": "",
+    "PD_CLIENT_SECRET": "",
+    "REDIRECT_URI": "http://localhost:5000/callback"
+}
