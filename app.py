@@ -7,7 +7,7 @@ import json
 app = Flask(__name__)
 
 # base_oauth_url -- endpoint for initiating an OAuth flow
-base_oauth_url = "https://app.pagerduty.com/oauth"
+base_oauth_url = "https://identity.pagerduty.com/oauth"
 
 with open("config.json") as config_file:
     config = json.load(config_file)
