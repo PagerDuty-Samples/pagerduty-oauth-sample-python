@@ -35,10 +35,10 @@ If all goes well, the callback page on the sample should present a friendly welc
 ## The Code
 Authorizing through OAuth involves making a request to PagerDuty for an authorization code. That request includes the Client ID that was generated when registering your app as well as the Redirect URI.
 
-To initiate the flow make a `GET` call to `https://app.pagerduty.com/oauth/authorize` with the query string parameters listed in `auth_params` as seen below.
+To initiate the flow make a `GET` call to `https://identity.pagerduty.com/oauth/authorize` with the query string parameters listed in `auth_params` as seen below.
 
 ```python
-base_oauth_url = "https://app.pagerduty.com/oauth"
+base_oauth_url = "https://identity.pagerduty.com/oauth"
 
 with open("config.json") as config_file:
     config = json.load(config_file)
@@ -55,9 +55,9 @@ auth_url = "{url}/authorize?{query_string}".format(
 ```
 The values for `client_id` and `redirect_uri` are taken from `config.json`, and `response_type` is important as it tells PagerDuty what type of flow is being initiated. In this case, by setting `response_type: 'code'` the flow is an Authorization Grant Flow.
 
-A successful response from calling the `https://app.pagerduty.com/oauth/authorize` endpoint should result in PagerDuty calling the `redirect_uri` you specified, which is the `/callback` in this project. The function at `/callback` is expecting PagerDuty to send a `code` in the query string. Using this `code` and the `PD_CLIENT_SECRET` in `config.json` you are now ready to request an access token. 
+A successful response from calling the `https://identity.pagerduty.com/oauth/authorize` endpoint should result in PagerDuty calling the `redirect_uri` you specified, which is the `/callback` in this project. The function at `/callback` is expecting PagerDuty to send a `code` in the query string. Using this `code` and the `PD_CLIENT_SECRET` in `config.json` you are now ready to request an access token. 
 
-To request an access token from PagerDuty you'll `POST` the values from `token_params` shown below in the body of the request to `https://app.pagerduty.com/oauth/token`. 
+To request an access token from PagerDuty you'll `POST` the values from `token_params` shown below in the body of the request to `https://identity.pagerduty.com/oauth/token`. 
 
 ```python
 token_params = {
