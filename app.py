@@ -49,7 +49,7 @@ def callback():
     try:
         # Retrieve code and request access token
         token_res = requests.post(
-            "{url}/token".format(url=base_oauth_url), params=token_params
+            "{url}/token".format(url=base_oauth_url), data=token_params
         )
 
         token_res.raise_for_status()
