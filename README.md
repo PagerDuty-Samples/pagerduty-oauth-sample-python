@@ -9,9 +9,9 @@ If you're an application builder, users of your application will need to access 
 To enable OAuth for your application, you'll first need to register your app in the PagerDuty UI. Instructions for registering your application can be found in [How to Build an App](https://v2.developer.pagerduty.com/docs/how-to-build-an-app).
 
 ## Configure Sample
-Once you have registered your App, there are a few key pieces of information you'll need to build your OAuth flow. In the **App Functionality** section you'll need to grab the value(s) for **Redirect URLs**, the **Client Id** and **Client Secret**. 
+Once you have registered your App, there are a few key pieces of information you'll need to build your OAuth flow. In the **App Functionality** section you'll need to grab the value(s) for **Redirect URLs**, the **Client Id** and **Client Secret**.
 
-Take those three values and plug them into the `config.json` file in this project. 
+Take those three values and plug them into the `config.json` file in this project.
 
 ```json
 {
@@ -26,7 +26,7 @@ The value for `REDIRECT_URI` can use whichever domain you have this code running
 ## Run Sample
 To use this sample, you'll need to create a virtual environment,`python -m venv env`, and activate it `source env/bin/activate`. Then call `pip install -r requirements.txt` to install dependent modules.
 
-Next, call `python app.py`, after which you should be greeted by a message that says, `Serving Flask app "app"`. 
+Next, call `python app.py`, after which you should be greeted by a message that says, `Serving Flask app "app"`.
 
 In your browser, go to [http://localhost:5000](http://localhost:5000) where you'll see a link to `Connect to PagerDuty`. Click that to initiate the OAuth flow. You'll be taken to PagerDuty, where you'll be asked to login (if necessary), and then to authorize access of your PagerDuty account to the sample application.
 
@@ -55,9 +55,9 @@ auth_url = "{url}/authorize?{query_string}".format(
 ```
 The values for `client_id` and `redirect_uri` are taken from `config.json`, and `response_type` is important as it tells PagerDuty what type of flow is being initiated. In this case, by setting `response_type: 'code'` the flow is an Authorization Grant Flow.
 
-A successful response from calling the `https://identity.pagerduty.com/oauth/authorize` endpoint should result in PagerDuty calling the `redirect_uri` you specified, which is the `/callback` in this project. The function at `/callback` is expecting PagerDuty to send a `code` in the query string. Using this `code` and the `PD_CLIENT_SECRET` in `config.json` you are now ready to request an access token. 
+A successful response from calling the `https://identity.pagerduty.com/oauth/authorize` endpoint should result in PagerDuty calling the `redirect_uri` you specified, which is the `/callback` in this project. The function at `/callback` is expecting PagerDuty to send a `code` in the query string. Using this `code` and the `PD_CLIENT_SECRET` in `config.json` you are now ready to request an access token.
 
-To request an access token from PagerDuty you'll `POST` the values from `token_params` shown below in the body of the request to `https://identity.pagerduty.com/oauth/token`. 
+To request an access token from PagerDuty you'll `POST` the values from `token_params` shown below in the body of the request to `https://identity.pagerduty.com/oauth/token`.
 
 ```python
 token_params = {
@@ -74,7 +74,7 @@ Using the [requests](https://pypi.org/project/requests/) library this call looks
 ```python
 try:
     token_res = requests.post(
-        "{url}/token".format(url=base_oauth_url), params=token_params
+        "{url}/token".format(url=base_oauth_url), data=token_params
     )
     token_res.raise_for_status()
 ```
